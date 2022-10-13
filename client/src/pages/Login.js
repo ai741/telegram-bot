@@ -47,8 +47,8 @@ export const Login = () => {
   return (
     <>
       <Header />
-      <div className="Login register-container">
-        <Paper elevation={4} sx={{p:5}}>
+      <div className="Login main-container">
+        <Paper elevation={4} sx={{ p: 5 }}>
           <Typography variant="h5">Вход в аккаунт</Typography>
           <form onSubmit={handleSubmit(onSubmit)}>
             <TextField

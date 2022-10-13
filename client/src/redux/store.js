@@ -3,11 +3,10 @@ import { authReducer } from "./slices/auth";
 import { botReducer } from "./slices/bot";
 
 const store = configureStore({
-    reducer: {
-        auth: authReducer,
-        bot: botReducer
-    },
-})
-
+  reducer: {
+    auth: authReducer,
+    bot: botReducer,
+  },
+});
 
 export default store;

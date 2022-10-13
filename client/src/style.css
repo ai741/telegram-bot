@@ -1,38 +1,61 @@
-*{
-    padding: 0;
-    margin: 0;
+* {
+  padding: 0;
+  margin: 0;
 }
-body{
-    margin: 0 auto;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+body {
+  margin: 0 auto;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
-a{
-    text-decoration: none;
-}
-
-.Login{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 600px;
-}
-.Home{
-    height: 100vh;
-}
-.main-container{
-    display: flex;
-    margin: 0 auto;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    width: 1400px;
-    flex-wrap: wrap;
+a {
+  text-decoration: none;
 }
 
-.form-container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 200px;
-    justify-content: space-between;
+.Login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 600px;
+}
+.Home {
+  height: 100vh;
+}
+.main-container {
+  display: flex;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  width: 1400px;
+  flex-wrap: wrap;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 200px;
+  justify-content: space-between;
+}
+.commands-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.commands-item {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  height: 90px;
+  width: 350px;
+}
+
+.commands-btn {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-around;
 }

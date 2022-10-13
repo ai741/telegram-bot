@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react";
 
-import styles from './Title.module.scss';
-import Container from '@mui/material/Container';
+import styles from "./Title.module.scss";
+import Container from "@mui/material/Container";
 
-export const Title = ({value}) => {
+export const Title = ({ value }) => {
   return (
     <div className={styles.root}>
       <Container maxWidth="lg">

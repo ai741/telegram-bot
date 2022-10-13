@@ -1,20 +1,11 @@
-import { Button, TextField } from "@mui/material";
+import { Button } from "@mui/material";
 import axios from "axios";
-import { useEffect, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useRef } from "react";
 import { Header } from "../components/Header";
-import { Input } from "@mui/material";
 import { Title } from "../components/Title";
-import { fetchCommands, fetchMe, fetchSetCommands } from "../redux/slices/bot";
-import { selectBotData, selectCommands } from "../redux/slices/bot";
 
 export const Home = () => {
   const refText = useRef(null);
-  const refCommand = useRef(null);
-  const refCommandDesc = useRef(null);
-  const dispatch = useDispatch();
-  const dataInfo = useSelector(selectBotData);
-  const commands = useSelector(selectCommands);
 
   const handleSubmit = async () => {
     const inputText = refText.current.value;
@@ -28,42 +19,6 @@ export const Home = () => {
       }
     );
   };
-
-  const handleGetMe = () => {
-    dispatch(fetchMe());
-    if (dataInfo) console.log(dataInfo);
-  };
-
-  const handleGetCommnads = () => {
-    if (commands) console.log(commands.result);
-  };
-
-  const handleSetCommnads = () => {
-    let arr = [];
-    commands.result.map((obj)=>{
-      arr.push(obj)
-    })
-
-    const command = refCommand.current.value
-    const description = refCommandDesc.current.value
-
-    arr.push({ command: command, description: description });
-
-
-
-    dispatch(
-      fetchSetCommands({
-        commands: arr,
-      })
-    );
-
-    console.log(command);
-  };
-
-  useEffect(() => {
-    dispatch(fetchCommands());
-  }, []);
-
   return (
     <div className="Home">
       <Header />
@@ -73,28 +28,6 @@ export const Home = () => {
         <Button onClick={handleSubmit} variant="contained">
           Отправить
         </Button>
-      </div>
-      <Title value="Статистика" />
-      <div className="main-container">
-        <Button onClick={handleGetMe} variant="contained">
-          Получить
-        </Button>
-      </div>
-      <Title value="Команды" />
-      <div className="main-container">
-        <Button onClick={handleGetCommnads} variant="contained">
-          Получить
-        </Button>
-      </div>
-      <Title value="Создание команды" />
-      <div className="main-container">
-        <div className="form-container">
-          <input variant="outlined" ref={refCommand} />
-          <input variant="outlined" ref={refCommandDesc} />
-          <Button onClick={handleSetCommnads} variant="contained">
-            Отправить
-          </Button>
-        </div>
       </div>
     </div>
   );
