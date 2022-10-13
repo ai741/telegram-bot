@@ -48,10 +48,6 @@ app.post("/upload", checkAuth, upload.single("image"), (req, res) => {
   });
 });
 
-app.post(`/bot${token}`, (req, res) => {
-  bot.processUpdate(req.body);
-  res.sendStatus(200);
-});
 
 bot.on("message", (msg) => {
   bot.sendMessage(msg.chat.id, "I am alive!");

@@ -1,8 +1,9 @@
-import { Button } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 import axios from "axios";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Header } from "../components/Header";
+import { Input } from "@mui/material";
 import { Title } from "../components/Title";
 import { fetchCommands, fetchMe, fetchSetCommands } from "../redux/slices/bot";
 import { selectBotData, selectCommands } from "../redux/slices/bot";
@@ -34,20 +35,34 @@ export const Home = () => {
   };
 
   const handleGetCommnads = () => {
-    dispatch(fetchCommands());
-    if (commands) console.log(commands);
+    if (commands) console.log(commands.result);
   };
 
   const handleSetCommnads = () => {
+    let arr = [];
+    commands.result.map((obj)=>{
+      arr.push(obj)
+    })
+
+    const command = refCommand.current.value
+    const description = refCommandDesc.current.value
+
+    arr.push({ command: command, description: description });
+
+
+
     dispatch(
       fetchSetCommands({
-        params: {
-          command: "/sadf",
-          description: "sadfsdf",
-        },
+        commands: arr,
       })
     );
+
+    console.log(command);
   };
+
+  useEffect(() => {
+    dispatch(fetchCommands());
+  }, []);
 
   return (
     <div className="Home">
@@ -73,11 +88,13 @@ export const Home = () => {
       </div>
       <Title value="Создание команды" />
       <div className="main-container">
-        <input ref={refCommand} />
-        <input ref={refCommandDesc} />
-        <Button onClick={handleSetCommnads} variant="contained">
-          Отправить
-        </Button>
+        <div className="form-container">
+          <input variant="outlined" ref={refCommand} />
+          <input variant="outlined" ref={refCommandDesc} />
+          <Button onClick={handleSetCommnads} variant="contained">
+            Отправить
+          </Button>
+        </div>
       </div>
     </div>
   );

@@ -15,7 +15,7 @@ export const fetchCommands = createAsyncThunk("fetchCommands", async () =>{
 })
 
 export const fetchSetCommands = createAsyncThunk("fetchSetCommands", async (params) =>{
-    const { data } = await axios.get(`https://api.telegram.org/bot${BOT_TOKEN}/setMyCommands`, params)
+    const { data } = await axios.post(`https://api.telegram.org/bot${BOT_TOKEN}/setMyCommands`, params)
     return data
 })
 
