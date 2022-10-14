@@ -31,6 +31,18 @@ export const fetchSetCommands = createAsyncThunk(
   }
 );
 
+//Запрос на удаление команд
+export const fetchDeleteCommands = createAsyncThunk(
+  "fetchDeleteCommands",
+  async (params) => {
+    const { data } = await axios.post(
+      `https://api.telegram.org/bot${BOT_TOKEN}/deleteMyCommands`,
+      params
+    );
+    return data;
+  }
+);
+
 const initialState = {
   commands: {
     data: null,

@@ -40,6 +40,10 @@ export const Commands = () => {
     console.log(command);
   };
 
+  const handleDeleteCommand  = () =>{
+    
+  }
+
   return (
     <div className="Home">
       <Header />

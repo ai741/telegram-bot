@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import multer from "multer";
+import axios from "axios";
 
 import authRouter from "./routes/authRouter.js";
 import checkAuth from "./middleware/checkAuth.js";
@@ -10,8 +11,6 @@ import TelegramBot from "node-telegram-bot-api";
 const token = "5756023407:AAFZegnQT-KKXrvNkU39ZtR37vmPJgWLEkA";
 
 const bot = new TelegramBot(token, { polling: true });
-
-bot.setWebHook(`https://api.telegram.org/bot${token}`);
 
 mongoose
   .connect("mongodb://localhost:27017/auth")
@@ -48,8 +47,26 @@ app.post("/upload", checkAuth, upload.single("image"), (req, res) => {
   });
 });
 
+//Запрашиваем все команды
+const getCommands = () => {
+  return axios
+    .get(`https://api.telegram.org/bot${token}/getMyCommands`)
+    .then((response) => {
+      return response.data.result;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+//Отвечаем на них, если они есть в сообщении
 bot.on("message", (msg) => {
-  bot.sendMessage(msg.chat.id, "I am alive!");
+  getCommands().then((data) => {
+    data?.map((obj) => {
+      if (msg.text === "/" + obj.command) {
+        bot.sendMessage(msg.chat.id, obj.description);
+      }
+    });
+  });
 });
 
 app.listen(5000, (err) => {
