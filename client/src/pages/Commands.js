@@ -74,6 +74,7 @@ export const Commands = () => {
 
     window.location.reload();
     alert("Добавлена новая команда");
+    window.location.reload()
   };
 
   const handleDeleteCommand = (e) => {
@@ -102,13 +103,15 @@ export const Commands = () => {
   const handlePatchCommand = () => {
     const command = refChangeCommand.current.value;
     const description = refChangeDesc.current.value;
+    const elem = {command: command, description: description}
+    console.log(command, description);
     let arr = [];
     // eslint-disable-next-line array-callback-return
     commands.result.map((obj) => {
       arr.push(obj);
     });
     if (changeIndex !== -1) {
-      arr.splice(changeIndex, 1, {command: command, description: description});
+      arr.splice(changeIndex, 1, elem);
     }
     console.log(arr);
     dispatch(fetchDeleteCommands());
@@ -117,10 +120,11 @@ export const Commands = () => {
         commands: arr,
       })
     );
-    // window.location.reload();
-    dispatch(fetchCommands());
+    window.location.reload();
+    // dispatch(fetchCommands());
 
     handleClose();
+
   };
 
   return (
