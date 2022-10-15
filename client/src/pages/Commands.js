@@ -55,6 +55,7 @@ export const Commands = () => {
     if (commands) console.log(commands.result);
   }, [commands]);
 
+  //Функция создания команды
   const handleSetCommnads = () => {
     let arr = [];
     commands.result.map((obj) => {
@@ -77,6 +78,7 @@ export const Commands = () => {
     window.location.reload()
   };
 
+  //Удаление комнады
   const handleDeleteCommand = (e) => {
     const index = e.target.closest("[data-index]").dataset.index;
     // eslint-disable-next-line no-restricted-globals
@@ -100,6 +102,7 @@ export const Commands = () => {
     }
   };
 
+  //Изменение команды
   const handlePatchCommand = () => {
     const command = refChangeCommand.current.value;
     const description = refChangeDesc.current.value;
@@ -159,6 +162,7 @@ export const Commands = () => {
               <Paper elevation={6} sx={{ p: 4, m: 4 }}>
                 <div className="commands-item">
                   <span>{obj.command}</span>
+                  <p>{obj.description}</p>
                   <div className="commands-btn">
                     {/* Кнопка изменения */}
                     <Button
